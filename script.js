@@ -7,11 +7,14 @@ var started = false;
 var level = 0;
 
 $("button").on("click", function() {
-    $("button").addClass("get-small");
+  $ ("button").addClass("get-small");
     setTimeout(() => {
         $("button").removeClass("get-small");
     }, 100);
+    myGame();
+});
 
+function myGame() {
     if (!started) {
         setTimeout(() => {
             $("button").css("display", "none");
@@ -28,12 +31,7 @@ $("button").on("click", function() {
         nextSequence();
         started = true;  
     } 
-
-   
-    
-});
-
-
+}
 
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -52,6 +50,8 @@ function checkAnswer(currentLevel) {
     }, 200);
 
     startOver();
+    $(document).on("keypress", myGame);
+  
   }
 }
 
